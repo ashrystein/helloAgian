@@ -11,3 +11,10 @@ jest.mock('@react-navigation/native', () => {
     useRoute: jest.fn()
   }
 })
+
+jest.mock('react-redux', () => {
+  return {
+    useSelector: jest.fn().mockImplementation(),
+    useDispatch: jest.fn().mockImplementation()
+  }
+})
