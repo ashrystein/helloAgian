@@ -4,12 +4,10 @@ import PropTypes from 'prop-types'
 import FastImage from 'react-native-fast-image'
 import Carousel from 'react-native-snap-carousel'
 
-import { Images } from '../../../../Theme'
+import { Images, Metrics } from '../../../../Theme'
 
 import { testIds } from './BountyCard.testIds'
 import BountyCardStyles from './BountyCard.styles'
-
-const carouselItemWidth = 0.9
 
 const BountyCard = ({ item, testID }) => {
   const {
@@ -57,7 +55,7 @@ const BountyCard = ({ item, testID }) => {
             />
           )}
           sliderWidth={width}
-          itemWidth={width * carouselItemWidth}
+          itemWidth={width * Metrics.bountyPicsWidth}
           layout={'stack'}
         />
       ) : (

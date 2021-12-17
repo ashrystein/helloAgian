@@ -1,17 +1,15 @@
 import { StyleSheet, Dimensions } from 'react-native'
 
-import { Fonts, Colors } from '../../../../Theme'
+import { Fonts, Colors, Metrics } from '../../../../Theme'
 
 const { height } = Dimensions.get('window')
-
-const cardHeight = 0.4
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: height * cardHeight,
+    height: height * Metrics.bountyCardHeight,
     marginVertical: 5,
-    backgroundColor: Colors.lightGrey,
+    backgroundColor: Colors.skyBlue,
     borderRadius: 5,
     padding: 10
   },
