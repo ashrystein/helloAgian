@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Pressable, Text, Image } from 'react-native'
 import PropTypes from 'prop-types'
 
@@ -34,4 +34,4 @@ ErrorIndicator.propTypes = {
   errorMessage: PropTypes.string.isRequired
 }
 
-export default ErrorIndicator
+export default memo(ErrorIndicator)
