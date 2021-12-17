@@ -31,6 +31,6 @@ describe('Bounties reducer', () => {
     store.dispatch(bountiesActions.fetchError({ error: 'error' }))
     const { isLoading, error } = store.getState().bountiesReducer
     expect(isLoading).toBe(false)
-    expect(error).toBe('error')
+    expect(error).toEqual({ error: 'error' })
   })
 })
