@@ -15,10 +15,10 @@ const { actions: bountiesActions, reducer: bountiesReducer } = createSlice({
       isLoading: true,
       error: undefined
     }),
-    fetchError: (state, { payload: { error } }) => ({
+    fetchError: (state, { payload }) => ({
       ...state,
       isLoading: false,
-      error: error
+      error: payload
     }),
     fetchSuccess: (state, { payload: { data } }) => ({
       ...state,
