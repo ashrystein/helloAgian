@@ -1,3 +1,3 @@
-import HomeScreen from './HomeScreen/HomeScreen'
+import BountiesScreen from './BountiesScreen/BountiesScreen'
 
-export { HomeScreen }
+export { BountiesScreen }

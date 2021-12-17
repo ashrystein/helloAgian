@@ -1,5 +1,5 @@
 const routes = {
-  HomeScreen: 'HomeScreen'
+  BountiesScreen: 'BountiesScreen'
 }
 
 export { routes }
