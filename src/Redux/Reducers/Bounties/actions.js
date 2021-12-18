@@ -6,11 +6,11 @@ const MOCKED_CLINT_ID = '5189'
 
 const fetchBounties = createAsyncThunk(
   'bounties/fetchBounties',
-  async (thunkAPI) => {
+  async (params, { rejectWithValue }) => {
     try {
       return await getBounties(MOCKED_CLINT_ID)
     } catch (error) {
-      return error
+      return rejectWithValue(error)
     }
   }
 )
