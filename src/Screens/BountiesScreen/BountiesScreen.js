@@ -1,6 +1,12 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { SafeAreaView, FlatList, Pressable, Text } from 'react-native'
+import {
+  SafeAreaView,
+  FlatList,
+  Pressable,
+  Text,
+  useWindowDimensions
+} from 'react-native'
 
 import {
   bountiesActions,
@@ -8,12 +14,18 @@ import {
 } from '../../Redux/Reducers/Bounties'
 
 import { LoadingIndicator, ErrorIndicator } from '../../Components'
+import { Metrics } from '../../Theme'
 
 import BountiesStyles from './BountiesScreen.styles'
 import { testIds } from './BountiesScreen.testIds'
 import { BountyCard, MyRewardsModal } from './Components'
 
 const BountiesScreen = () => {
+  const { height } = useWindowDimensions()
+  const ListItemHeight = useMemo(
+    () => height * Metrics.bountyCardHeight,
+    [height]
+  )
   const dispatch = useDispatch()
   const { isLoading, error, bounties } = useSelector(
     bountiesSelectors.selectBounties
@@ -107,6 +119,11 @@ const BountiesScreen = () => {
         removeClippedSubviews={true}
         initialNumToRender={10}
         onEndReachedThreshold={0.5}
+        getItemLayout={(data, index) => ({
+          length: ListItemHeight,
+          offset: ListItemHeight * index,
+          index
+        })}
       />
       <MyRewardsModal
         isVisible={isRewardsVisible}
