@@ -1,8 +1,15 @@
 import React, { memo } from 'react'
-import { View, Text, useWindowDimensions } from 'react-native'
+import { View, Text, useWindowDimensions, Pressable } from 'react-native'
 import PropTypes from 'prop-types'
 import FastImage from 'react-native-fast-image'
 import Carousel from 'react-native-snap-carousel'
+import { useDispatch, useSelector } from 'react-redux'
+
+import {
+  rewardsActions,
+  rewardsSelectors
+} from '../../../../Redux/Reducers/Rewards'
+import { isListContainItemById } from '../../../../Utils/Helpers'
 
 import { Images, Metrics } from '../../../../Theme'
 
@@ -10,6 +17,7 @@ import { testIds } from './BountyCard.testIds'
 import BountyCardStyles from './BountyCard.styles'
 
 const BountyCard = ({ item, testID }) => {
+  const dispatch = useDispatch()
   const {
     name: BountyName,
     pictures,
@@ -17,6 +25,12 @@ const BountyCard = ({ item, testID }) => {
     needed_points
   } = item
   const { width } = useWindowDimensions()
+  const { rewards } = useSelector(rewardsSelectors.selectRewards)
+  const isItemCollected = isListContainItemById(rewards, item)
+
+  const handleOnCollect = () => {
+    dispatch(rewardsActions.collectReward(item))
+  }
 
   const HeadingSection = () => (
     <View
@@ -52,6 +66,7 @@ const BountyCard = ({ item, testID }) => {
               source={{ uri: picture.image }}
               style={BountyCardStyles.image}
               testID={`${testIds.BountyCard_Picture_Item}${index}`}
+              resizeMode="cover"
             />
           )}
           sliderWidth={width}
@@ -70,13 +85,24 @@ const BountyCard = ({ item, testID }) => {
   )
 
   const FooterSection = () => (
-    <Text
-      style={BountyCardStyles.headingText}
-      numberOfLines={3}
-      testID={testIds.BountyCard_Footer_Text}
-    >
-      {activation_description}
-    </Text>
+    <>
+      <Text
+        style={BountyCardStyles.headingText}
+        numberOfLines={3}
+        testID={testIds.BountyCard_Footer_Text}
+      >
+        {activation_description}
+      </Text>
+      <Pressable
+        testID={''}
+        style={BountyCardStyles.collectBtn(isItemCollected)}
+        onPress={handleOnCollect}
+      >
+        <Text style={BountyCardStyles.collectText} testID={''}>
+          Collect
+        </Text>
+      </Pressable>
+    </>
   )
 
   return (

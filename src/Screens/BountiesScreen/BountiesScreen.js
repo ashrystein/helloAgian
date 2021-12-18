@@ -2,8 +2,10 @@ import React, { useEffect, useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { SafeAreaView, FlatList } from 'react-native'
 
-import { fetchBounties } from '../../Redux/Reducers/Bounties/actions'
-import { selectBounties } from '../../Redux/Reducers/Bounties/selectors'
+import {
+  bountiesActions,
+  bountiesSelectors
+} from '../../Redux/Reducers/Bounties'
 
 import { LoadingIndicator, ErrorIndicator } from '../../Components'
 
@@ -13,7 +15,9 @@ import { BountyCard } from './Components'
 
 const BountiesScreen = () => {
   const dispatch = useDispatch()
-  const { isLoading, error, bounties } = useSelector(selectBounties)
+  const { isLoading, error, bounties } = useSelector(
+    bountiesSelectors.selectBounties
+  )
   const [bountiesList, setBountiesList] = useState([])
   const [isRefreshing, setIsRefreshing] = useState(false)
 
@@ -22,7 +26,7 @@ const BountiesScreen = () => {
    * Handle fetching bounties data
    */
   const handleFetchBounties = useCallback(() => {
-    dispatch(fetchBounties())
+    dispatch(bountiesActions.fetchBounties())
   }, [dispatch])
 
   /**

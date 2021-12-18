@@ -5,7 +5,8 @@ const Colors = {
   lightGrey: '#d4d4d4',
   green: '#13e000',
   skyBlue: '#87CEEB',
-  darkBlue: '#274472'
+  darkBlue: '#274472',
+  gold: '#FFD700'
 }
 
 export default Colors

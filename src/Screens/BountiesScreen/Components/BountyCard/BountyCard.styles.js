@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native'
 
-import { Fonts, Colors, Metrics } from '../../../../Theme'
+import { Fonts, Colors, Metrics, Styles } from '../../../../Theme'
 
 const { height } = Dimensions.get('window')
 
@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: height * Metrics.bountyCardHeight,
     marginVertical: 5,
-    backgroundColor: Colors.skyBlue,
+    backgroundColor: Colors.white,
     borderRadius: 5,
     padding: 10
   },
@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 10
+    marginVertical: 10,
+    ...Styles.shadow
   },
   nameText: {
     fontSize: Fonts.large,
@@ -36,6 +37,20 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: '100%'
+  },
+  collectBtn: (isItemCollected) => ({
+    width: '100%',
+    height: 40,
+    borderRadius: 20,
+    marginTop: 10,
+    backgroundColor: Colors.gold,
+    justifyContent: 'center',
+    alignItems: 'center',
+    opacity: isItemCollected ? 0.3 : 1
+  }),
+  collectText: {
+    fontSize: Fonts.medium,
+    color: Colors.darkBlue
   }
 })
 
