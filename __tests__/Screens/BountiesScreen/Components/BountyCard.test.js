@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { render } from '@testing-library/react-native'
+import { render, fireEvent, act } from '@testing-library/react-native'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { BountyCard } from '../../../../src/Screens/BountiesScreen/Components'
 import { testIds } from '../../../../src/Screens/BountiesScreen/Components/BountyCard/BountyCard.testIds'
@@ -23,7 +24,16 @@ const props = {
   },
   testID: 'bountyItem1'
 }
+
+const mockedRewards = {
+  rewards: [
+    { id: 1, name: 'reward one' },
+    { id: 1, name: 'reward one' }
+  ]
+}
 describe('BountyCard Component', () => {
+  useDispatch.mockReturnValue(jest.fn())
+  useSelector.mockImplementation(() => mockedRewards)
   let comp = null
   beforeEach(() => {
     comp = render(<BountyCard {...props} />)
@@ -70,5 +80,13 @@ describe('BountyCard Component', () => {
     expect(getByTestId(footerText).children[0]).toBe(
       props.item.activation_description
     )
+    expect(getByTestId(testIds.BountyCard_Footer_Collece_Btn)).toBeTruthy()
+  })
+
+  it('should collect reward successfully', () => {
+    const { getByTestId } = comp
+    const collectBtn = getByTestId(testIds.BountyCard_Footer_Collece_Btn)
+    expect(collectBtn).toBeTruthy()
+    act(() => fireEvent.press(collectBtn))
   })
 })

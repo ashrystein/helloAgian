@@ -94,11 +94,14 @@ const BountyCard = ({ item, testID }) => {
         {activation_description}
       </Text>
       <Pressable
-        testID={''}
+        testID={testIds.BountyCard_Footer_Collece_Btn}
         style={BountyCardStyles.collectBtn(isItemCollected)}
         onPress={handleOnCollect}
       >
-        <Text style={BountyCardStyles.collectText} testID={''}>
+        <Text
+          style={BountyCardStyles.collectText}
+          testID={testIds.BountyCard_Footer_Collece_Text}
+        >
           Collect
         </Text>
       </Pressable>
