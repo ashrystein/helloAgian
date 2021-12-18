@@ -22,7 +22,8 @@ const props = {
     activation_description: 'activation description',
     needed_points: 3
   },
-  testID: 'bountyItem1'
+  testID: 'bountyItem1',
+  showCollectBtn: true
 }
 
 const mockedRewards = {
@@ -88,5 +89,12 @@ describe('BountyCard Component', () => {
     const collectBtn = getByTestId(testIds.BountyCard_Footer_Collece_Btn)
     expect(collectBtn).toBeTruthy()
     act(() => fireEvent.press(collectBtn))
+  })
+
+  it('should not display collect button when showCollectBtn is (false)', () => {
+    props.showCollectBtn = false
+    const { queryByTestId } = render(<BountyCard {...props} />)
+    const collectBtn = queryByTestId(testIds.BountyCard_Footer_Collece_Btn)
+    expect(collectBtn).not.toBeTruthy()
   })
 })

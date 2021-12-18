@@ -16,7 +16,7 @@ import { Images, Metrics } from '../../../../Theme'
 import { testIds } from './BountyCard.testIds'
 import BountyCardStyles from './BountyCard.styles'
 
-const BountyCard = ({ item, testID }) => {
+const BountyCard = ({ item, testID, showCollectBtn }) => {
   const dispatch = useDispatch()
   const {
     name: BountyName,
@@ -96,18 +96,20 @@ const BountyCard = ({ item, testID }) => {
       >
         {activation_description}
       </Text>
-      <Pressable
-        testID={testIds.BountyCard_Footer_Collece_Btn}
-        style={BountyCardStyles.collectBtn(isItemCollected)}
-        onPress={handleOnCollect}
-      >
-        <Text
-          style={BountyCardStyles.collectText}
-          testID={testIds.BountyCard_Footer_Collece_Text}
+      {showCollectBtn && (
+        <Pressable
+          testID={testIds.BountyCard_Footer_Collece_Btn}
+          style={BountyCardStyles.collectBtn(isItemCollected)}
+          onPress={handleOnCollect}
         >
-          Collect
-        </Text>
-      </Pressable>
+          <Text
+            style={BountyCardStyles.collectText}
+            testID={testIds.BountyCard_Footer_Collece_Text}
+          >
+            Collect
+          </Text>
+        </Pressable>
+      )}
     </>
   )
 
@@ -122,7 +124,12 @@ const BountyCard = ({ item, testID }) => {
 
 BountyCard.propTypes = {
   item: PropTypes.object.isRequired,
-  testID: PropTypes.string
+  testID: PropTypes.string,
+  showCollectBtn: PropTypes.bool
+}
+
+BountyCard.defaultProps = {
+  showCollectBtn: true
 }
 
 export default memo(BountyCard)
