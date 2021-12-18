@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useMemo } from 'react'
 import { View, Text, useWindowDimensions, Pressable } from 'react-native'
 import PropTypes from 'prop-types'
 import FastImage from 'react-native-fast-image'
@@ -26,7 +26,10 @@ const BountyCard = ({ item, testID }) => {
   } = item
   const { width } = useWindowDimensions()
   const { rewards } = useSelector(rewardsSelectors.selectRewards)
-  const isItemCollected = isListContainItemById(rewards, item)
+  const isItemCollected = useMemo(
+    () => isListContainItemById(rewards, item),
+    [rewards, item]
+  )
 
   const handleOnCollect = () => {
     dispatch(rewardsActions.collectReward(item))

@@ -39,13 +39,8 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   collectBtn: (isItemCollected) => ({
-    width: '100%',
-    height: 40,
-    borderRadius: 20,
-    marginTop: 10,
+    ...Styles.mainButton,
     backgroundColor: Colors.gold,
-    justifyContent: 'center',
-    alignItems: 'center',
     opacity: isItemCollected ? 0.3 : 1
   }),
   collectText: {
