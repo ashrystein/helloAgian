@@ -1,17 +1,18 @@
-import { getBounties } from '../../../Services/Apis'
+import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import { bountiesActions } from './slice'
+import { getBounties } from '../../../Services/Apis'
 
 const MOCKED_CLINT_ID = '5189'
 
-const fetchBounties = () => async (dispatch) => {
-  dispatch(bountiesActions.fetchStart())
-  try {
-    const response = await getBounties(MOCKED_CLINT_ID)
-    dispatch(bountiesActions.fetchSuccess(response))
-  } catch (error) {
-    dispatch(bountiesActions.fetchError(error))
+const fetchBounties = createAsyncThunk(
+  'bounties/fetchBounties',
+  async (thunkAPI) => {
+    try {
+      return await getBounties(MOCKED_CLINT_ID)
+    } catch (error) {
+      return error
+    }
   }
-}
+)
 
 export { fetchBounties }

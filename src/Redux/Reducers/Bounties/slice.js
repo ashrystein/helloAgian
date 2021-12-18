@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+import { fetchBounties } from './actions'
+
 const initialState = {
   isLoading: false,
   error: undefined,
@@ -9,22 +11,23 @@ const initialState = {
 const { actions: bountiesActions, reducer: bountiesReducer } = createSlice({
   name: 'bounties',
   initialState,
-  reducers: {
-    fetchStart: (state, { payload }) => ({
+  reducers: {},
+  extraReducers: {
+    [fetchBounties.pending]: (state, { payload }) => ({
       ...state,
       isLoading: true,
       error: undefined
     }),
-    fetchError: (state, { payload }) => ({
-      ...state,
-      isLoading: false,
-      error: payload
-    }),
-    fetchSuccess: (state, { payload: { data } }) => ({
+    [fetchBounties.fulfilled]: (state, { payload: { data } }) => ({
       ...state,
       isLoading: false,
       error: undefined,
       bounties: data
+    }),
+    [fetchBounties.rejected]: (state, { payload }) => ({
+      ...state,
+      isLoading: false,
+      error: payload
     })
   }
 })
