@@ -20,7 +20,6 @@ describe('Rewards reducer', () => {
   it('should not add existing reward to rewards list', () => {
     store.dispatch(rewardsActions.collectReward(rewardStub[0]))
     const { rewards } = store.getState().rewardsReducer
-    console.log(rewards)
     expect(rewards.length).not.toBe(3)
   })
 })

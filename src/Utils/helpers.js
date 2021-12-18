@@ -5,6 +5,6 @@
  * @returns boolean true if targetItem inside the list else false
  */
 const isListContainItemById = (list, targetItem) =>
-  !!list.find((item) => item?.id === targetItem?.id)
+  !!list?.find((item) => item?.id === targetItem?.id)
 
 export { isListContainItemById }
