@@ -45,10 +45,5 @@
   },
   "jest": {
     "preset": "react-native"
-  },
-  "husky": {
-    "hooks": {
-      "pre-push": "npm run git-hook"
-    }
   }
 }
