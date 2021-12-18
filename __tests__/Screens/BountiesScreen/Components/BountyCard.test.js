@@ -29,7 +29,7 @@ const props = {
 const mockedRewards = {
   rewards: [
     { id: 1, name: 'reward one' },
-    { id: 1, name: 'reward one' }
+    { id: 1, name: 'reward two' }
   ]
 }
 describe('BountyCard Component', () => {

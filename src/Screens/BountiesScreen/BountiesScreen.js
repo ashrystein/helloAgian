@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { SafeAreaView, FlatList } from 'react-native'
+import { SafeAreaView, FlatList, Pressable, Text } from 'react-native'
 
 import {
   bountiesActions,
@@ -11,7 +11,7 @@ import { LoadingIndicator, ErrorIndicator } from '../../Components'
 
 import BountiesStyles from './BountiesScreen.styles'
 import { testIds } from './BountiesScreen.testIds'
-import { BountyCard } from './Components'
+import { BountyCard, MyRewardsModal } from './Components'
 
 const BountiesScreen = () => {
   const dispatch = useDispatch()
@@ -20,6 +20,7 @@ const BountiesScreen = () => {
   )
   const [bountiesList, setBountiesList] = useState([])
   const [isRefreshing, setIsRefreshing] = useState(false)
+  const [isRewardsVisible, setIsRewardsVisibility] = useState(false)
 
   /**
    *
@@ -36,6 +37,14 @@ const BountiesScreen = () => {
   const handleOnRefresh = () => {
     setIsRefreshing(true)
     handleFetchBounties()
+  }
+
+  /**
+   *
+   * Show / Hide rewards modal
+   */
+  const handleMyRewardsVisibility = () => {
+    setIsRewardsVisibility(!isRewardsVisible)
   }
 
   /**
@@ -81,6 +90,12 @@ const BountiesScreen = () => {
 
   return (
     <SafeAreaView style={BountiesStyles.container}>
+      <Pressable
+        style={BountiesStyles.myRewardsBtn}
+        onPress={handleMyRewardsVisibility}
+      >
+        <Text>My Rewards</Text>
+      </Pressable>
       <FlatList
         data={bountiesList}
         renderItem={renderItem}
@@ -92,6 +107,10 @@ const BountiesScreen = () => {
         removeClippedSubviews={true}
         initialNumToRender={10}
         onEndReachedThreshold={0.5}
+      />
+      <MyRewardsModal
+        isVisible={isRewardsVisible}
+        dismiss={handleMyRewardsVisibility}
       />
     </SafeAreaView>
   )
