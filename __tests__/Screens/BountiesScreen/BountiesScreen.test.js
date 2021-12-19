@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { render } from '@testing-library/react-native'
+import { render, fireEvent, act } from '@testing-library/react-native'
 
 import { BountiesScreen } from '../../../src/Screens'
 import { testIds } from '../../../src/Screens/BountiesScreen/BountiesScreen.testIds'
@@ -47,5 +47,16 @@ describe('Bounties Screen', () => {
     const { getByTestId } = comp
     expect(getByTestId(`${testIds.Bounties_List_Item}${0}`)).toBeTruthy()
     expect(getByTestId(`${testIds.Bounties_List_Item}${1}`)).toBeTruthy()
+  })
+
+  it('should update rewards modal visibility', async () => {
+    const { getByTestId } = comp
+    const rewardsModalBtn = getByTestId(testIds.Bounties_List_Rewards_Modal_Btn)
+    expect(rewardsModalBtn).toBeTruthy()
+    const rewardsModal = getByTestId('MyRewardsModal_Modal')
+    expect(rewardsModal).toBeTruthy()
+    expect(rewardsModal.props.visible).toBe(false)
+    act(() => fireEvent.press(rewardsModalBtn))
+    expect(rewardsModal.props.visible).toBe(true)
   })
 })

@@ -106,8 +106,9 @@ const BountiesScreen = () => {
       <Pressable
         style={BountiesStyles.myRewardsBtn}
         onPress={handleMyRewardsVisibility}
+        testID={testIds.Bounties_List_Rewards_Modal_Btn}
       >
-        <Text>{`Collected Rewards (${rewards.length})`}</Text>
+        <Text>{`Collected Rewards (${rewards?.length})`}</Text>
       </Pressable>
       <FlatList
         data={bountiesList}
