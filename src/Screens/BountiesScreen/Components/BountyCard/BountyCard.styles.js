@@ -38,11 +38,10 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%'
   },
-  collectBtn: (isItemCollected) => ({
+  collectBtn: {
     ...Styles.mainButton,
-    backgroundColor: Colors.gold,
-    opacity: isItemCollected ? 0.3 : 1
-  }),
+    backgroundColor: Colors.gold
+  },
   collectText: {
     fontSize: Fonts.medium,
     color: Colors.darkBlue

@@ -9,7 +9,7 @@ import { rewardsSelectors } from '../../../../Redux/Reducers/Rewards'
 import { testIds } from './MyRewardsModal.testIds'
 import MyRewardsModalStyles from './MyRewardsModal.styles'
 
-const MyRewardsModal = ({ isVisible, dismiss }) => {
+const MyRewardsModal = ({ isVisible, dismiss, ListItemHeight }) => {
   const { rewards } = useSelector(rewardsSelectors.selectRewards)
 
   const renderItem = ({ item, index }) => (
@@ -50,6 +50,11 @@ const MyRewardsModal = ({ isVisible, dismiss }) => {
             removeClippedSubviews={true}
             initialNumToRender={10}
             onEndReachedThreshold={0.5}
+            getItemLayout={(data, index) => ({
+              length: ListItemHeight,
+              offset: ListItemHeight * index,
+              index
+            })}
           />
         </View>
       </SafeAreaView>
@@ -59,7 +64,8 @@ const MyRewardsModal = ({ isVisible, dismiss }) => {
 
 MyRewardsModal.propTypes = {
   isVisible: PropTypes.bool.isRequired,
-  dismiss: PropTypes.func
+  dismiss: PropTypes.func.isRequired,
+  ListItemHeight: PropTypes.number
 }
 
 export default memo(MyRewardsModal)

@@ -12,7 +12,7 @@ import {
   bountiesActions,
   bountiesSelectors
 } from '../../Redux/Reducers/Bounties'
-
+import { rewardsSelectors } from '../../Redux/Reducers/Rewards'
 import { LoadingIndicator, ErrorIndicator } from '../../Components'
 import { Metrics } from '../../Theme'
 
@@ -30,6 +30,7 @@ const BountiesScreen = () => {
   const { isLoading, error, bounties } = useSelector(
     bountiesSelectors.selectBounties
   )
+  const { rewards } = useSelector(rewardsSelectors.selectRewards)
   const [bountiesList, setBountiesList] = useState([])
   const [isRefreshing, setIsRefreshing] = useState(false)
   const [isRewardsVisible, setIsRewardsVisibility] = useState(false)
@@ -106,7 +107,7 @@ const BountiesScreen = () => {
         style={BountiesStyles.myRewardsBtn}
         onPress={handleMyRewardsVisibility}
       >
-        <Text>My Rewards</Text>
+        <Text>{`Collected Rewards (${rewards.length})`}</Text>
       </Pressable>
       <FlatList
         data={bountiesList}
@@ -128,6 +129,7 @@ const BountiesScreen = () => {
       <MyRewardsModal
         isVisible={isRewardsVisible}
         dismiss={handleMyRewardsVisibility}
+        ListItemHeight={ListItemHeight}
       />
     </SafeAreaView>
   )
