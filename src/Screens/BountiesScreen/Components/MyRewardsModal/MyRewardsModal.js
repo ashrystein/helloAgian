@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 
 import BountyCard from '../BountyCard/BountyCard'
 import { rewardsSelectors } from '../../../../Redux/Reducers/Rewards'
+import { en } from '../../../../i18n'
 
 import { testIds } from './MyRewardsModal.testIds'
 import MyRewardsModalStyles from './MyRewardsModal.styles'
@@ -39,7 +40,7 @@ const MyRewardsModal = ({ isVisible, dismiss, ListItemHeight }) => {
             onPress={dismiss}
             testID={testIds.MyRewardsModal_CloseText}
           >
-            Close
+            {en.Close}
           </Text>
           <FlatList
             data={rewards}

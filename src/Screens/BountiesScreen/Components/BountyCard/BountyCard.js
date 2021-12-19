@@ -6,7 +6,7 @@ import Carousel from 'react-native-snap-carousel'
 import { useDispatch } from 'react-redux'
 
 import { rewardsActions } from '../../../../Redux/Reducers/Rewards'
-
+import { en } from '../../../../i18n'
 import { Images, Metrics } from '../../../../Theme'
 
 import { testIds } from './BountyCard.testIds'
@@ -42,7 +42,7 @@ const BountyCard = ({ item, testID, showCollectBtn }) => {
         style={BountyCardStyles.pointsText}
         testID={testIds.BountyCard_points_Text}
       >
-        {`${needed_points} Points`}
+        {`${needed_points} ${en.Points}`}
       </Text>
     </View>
   )
@@ -97,7 +97,7 @@ const BountyCard = ({ item, testID, showCollectBtn }) => {
             style={BountyCardStyles.collectText}
             testID={testIds.BountyCard_Footer_Collece_Text}
           >
-            Collect
+            {en.Collect}
           </Text>
         </Pressable>
       )}

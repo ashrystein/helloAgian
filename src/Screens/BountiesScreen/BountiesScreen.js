@@ -15,6 +15,7 @@ import {
 import { rewardsSelectors } from '../../Redux/Reducers/Rewards'
 import { LoadingIndicator, ErrorIndicator } from '../../Components'
 import { Metrics } from '../../Theme'
+import { en } from '../../i18n'
 
 import BountiesStyles from './BountiesScreen.styles'
 import { testIds } from './BountiesScreen.testIds'
@@ -95,7 +96,7 @@ const BountiesScreen = () => {
       <SafeAreaView style={BountiesStyles.container}>
         <ErrorIndicator
           onTryAgain={() => handleFetchBounties()}
-          errorMessage="Some thing wet wrong. Try again"
+          errorMessage={en.Default_Error_Message}
         />
       </SafeAreaView>
     )
@@ -108,7 +109,7 @@ const BountiesScreen = () => {
         onPress={handleMyRewardsVisibility}
         testID={testIds.Bounties_List_Rewards_Modal_Btn}
       >
-        <Text>{`Collected Rewards (${rewards?.length})`}</Text>
+        <Text>{`${en.Collected_Rewards} (${rewards?.length})`}</Text>
       </Pressable>
       <FlatList
         data={bountiesList}
