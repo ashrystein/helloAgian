@@ -9,16 +9,26 @@ npm i
 ```
 
 # Running the App
-1 - IOS (run the following commands)
+1 - IOS
+- run the following command:
 
 ```
 cd ios && pod install && cd ..
-
-npm run ios
 ``` 
 
-2 - Android (run the following command)
-- Make sure you have android emulators installed.
+- Simulator (run the following command):
+```
+npm run ios
+``` 
+- Physical device:
+ - Open Xcode and add the provisioning profile.
+ - Attach and select the physical device the press run.
+
+2 - Android
+
+- Emulators: Make sure you have android emulators installed.
+- Physical device: Attach the device and enable developer options inside the device.
+- run the following command
 
 ```
 npm run android
