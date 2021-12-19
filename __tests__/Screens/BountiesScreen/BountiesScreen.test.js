@@ -51,7 +51,7 @@ describe('Bounties Screen', () => {
 
   it('should update rewards modal visibility', async () => {
     const { getByTestId } = comp
-    const rewardsModalBtn = getByTestId(testIds.Bounties_List_Rewards_Modal_Btn)
+    const rewardsModalBtn = getByTestId('MyRewardsButton_Btn')
     expect(rewardsModalBtn).toBeTruthy()
     const rewardsModal = getByTestId('MyRewardsModal_Modal')
     expect(rewardsModal).toBeTruthy()

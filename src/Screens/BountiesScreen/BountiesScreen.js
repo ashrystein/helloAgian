@@ -1,25 +1,18 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  SafeAreaView,
-  FlatList,
-  Pressable,
-  Text,
-  useWindowDimensions
-} from 'react-native'
+import { SafeAreaView, FlatList, useWindowDimensions } from 'react-native'
 
 import {
   bountiesActions,
   bountiesSelectors
 } from '../../Redux/Reducers/Bounties'
-import { rewardsSelectors } from '../../Redux/Reducers/Rewards'
 import { LoadingIndicator, ErrorIndicator } from '../../Components'
 import { Metrics } from '../../Theme'
 import { en } from '../../i18n'
 
 import BountiesStyles from './BountiesScreen.styles'
 import { testIds } from './BountiesScreen.testIds'
-import { BountyCard, MyRewardsModal } from './Components'
+import { BountyCard, MyRewardsModal, MyRewardsButton } from './Components'
 
 const BountiesScreen = () => {
   const { height } = useWindowDimensions()
@@ -31,7 +24,6 @@ const BountiesScreen = () => {
   const { isLoading, error, bounties } = useSelector(
     bountiesSelectors.selectBounties
   )
-  const { rewards } = useSelector(rewardsSelectors.selectRewards)
   const [bountiesList, setBountiesList] = useState([])
   const [isRefreshing, setIsRefreshing] = useState(false)
   const [isRewardsVisible, setIsRewardsVisibility] = useState(false)
@@ -104,13 +96,7 @@ const BountiesScreen = () => {
 
   return (
     <SafeAreaView style={BountiesStyles.container}>
-      <Pressable
-        style={BountiesStyles.myRewardsBtn}
-        onPress={handleMyRewardsVisibility}
-        testID={testIds.Bounties_List_Rewards_Modal_Btn}
-      >
-        <Text>{`${en.Collected_Rewards} (${rewards?.length})`}</Text>
-      </Pressable>
+      <MyRewardsButton onPress={handleMyRewardsVisibility} />
       <FlatList
         data={bountiesList}
         renderItem={renderItem}
