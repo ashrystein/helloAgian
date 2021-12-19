@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { View, Text, useWindowDimensions, Pressable } from 'react-native'
+import { View, Text, useWindowDimensions } from 'react-native'
 import PropTypes from 'prop-types'
 import FastImage from 'react-native-fast-image'
 import Carousel from 'react-native-snap-carousel'
@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux'
 import { rewardsActions } from '../../../../Redux/Reducers/Rewards'
 import { en } from '../../../../i18n'
 import { Images, Metrics } from '../../../../Theme'
+import { CustomButton } from '../../../../Components'
 
 import { testIds } from './BountyCard.testIds'
 import BountyCardStyles from './BountyCard.styles'
@@ -88,18 +89,12 @@ const BountyCard = ({ item, testID, showCollectBtn }) => {
         {activation_description}
       </Text>
       {showCollectBtn && (
-        <Pressable
+        <CustomButton
           testID={testIds.BountyCard_Footer_Collece_Btn}
           style={BountyCardStyles.collectBtn}
           onPress={handleOnCollect}
-        >
-          <Text
-            style={BountyCardStyles.collectText}
-            testID={testIds.BountyCard_Footer_Collece_Text}
-          >
-            {en.Collect}
-          </Text>
-        </Pressable>
+          text={en.Collect}
+        />
       )}
     </>
   )

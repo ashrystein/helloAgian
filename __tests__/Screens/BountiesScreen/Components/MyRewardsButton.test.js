@@ -26,7 +26,7 @@ describe('MyRewardsButton Component', () => {
   it('should render component successfully', () => {
     const { getByTestId } = comp
     expect(getByTestId(testIds.MyRewardsButton_Btn)).toBeTruthy()
-    expect(getByTestId(testIds.MyRewardsButton_Text)).toBeTruthy()
+    expect(getByTestId(testIds.MyRewardsButton_Btn_Text)).toBeTruthy()
   })
 
   it('should call onPress successfully', () => {
@@ -38,7 +38,7 @@ describe('MyRewardsButton Component', () => {
 
   it('should show correct number of rewards', () => {
     const { getByTestId } = comp
-    const btnText = getByTestId(testIds.MyRewardsButton_Text)
+    const btnText = getByTestId(testIds.MyRewardsButton_Btn_Text)
     expect(btnText.children[0]).toEqual('Collected Rewards (2)')
   })
 })

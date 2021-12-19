@@ -1,6 +1,6 @@
 const testIds = {
   MyRewardsButton_Btn: 'MyRewardsButton_Btn',
-  MyRewardsButton_Text: 'MyRewardsButton'
+  MyRewardsButton_Btn_Text: 'MyRewardsButton_Btn_Text'
 }
 
 export { testIds }
